@@ -8,63 +8,60 @@ x-healthcheck-defaults: &healthcheck_defaults
 
 services:
 
-  webstack-go-service:
-    container_name: webstack-go-service
-    build:
-      context: ./
-      dockerfile: ./Dockerfile
+  guide:
+    container_name: guide
+    image: general9527/guide:latest
     ports:
       - "9999:9999"
     volumes:
-      - ./configs:/opt/configs
-      - ./logs/:/opt/logs/
-      - ./assets/upload/:/opt/assets/upload
-      - ./lock/:/opt/lock
+      - ./guide/configs:/opt/configs
+      - ./guide/logs/:/opt/logs/
+      - ./guide/assets/upload/:/opt/assets/upload
+      - ./guide/lock/:/opt/lock
     networks:
-      - webstack-go
+      - guide
     healthcheck:
       test: "/bin/netstat -anpt|grep 9999"
       <<: *healthcheck_defaults
     depends_on:
-      webstack-go-mysql:
+      guide-mysql:
         condition: service_healthy
-      webstack-go-redis:
+      guide-redis:
         condition: service_healthy
 
 
-  webstack-go-mysql:
+  guide-mysql:
     image: mysql/mysql-server:5.7
-    container_name: webstack-go-mysql
+    container_name: mysql
     environment:
-      MYSQL_DATABASE: webstack-go
+      MYSQL_DATABASE: guide
       TZ: Asia/Shanghai
       # 允许来自其他主机的根连接
       # https://dev.mysql.com/doc/refman/5.7/en/docker-mysql-more-topics.html#docker_var_mysql-root-host
       MYSQL_ROOT_HOST: "%"
-      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: password
     ports:
       - "3306:3306"
     networks:
-      - webstack-go
+      - guide
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       <<: *healthcheck_defaults
 
 
-  webstack-go-redis:
+  guide-redis:
     image: redis:6.2.4
-    container_name: webstack-go-redis
-    command: redis-server --requirepass 123456
+    container_name: guide-redis
+    command: redis-server --requirepass password
     ports:
       - "6379:6379"
     networks:
-      - webstack-go
+      - guide
     healthcheck:
       test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
       <<: *healthcheck_defaults
 
-
 networks:
-  webstack-go:
+  guide:
     driver: bridge
-    name: webstack-go
+    name: guide

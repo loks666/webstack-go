@@ -8,7 +8,7 @@
 
 [mail]
   host = "smtp.163.com"
-  pass = ""
+  pass = " "
   port = 465
   to = ""
   user = ""
@@ -21,21 +21,21 @@
     maxopenconn = 10
 
   [mysql.read]
-    addr = "webstack-go-mysql:3306"
-    name = "webstack-go"
-    pass = "123456"
+    addr = "mysql:3306"
+    name = "guide"
+    pass = "password"
     user = "root"
 
   [mysql.write]
-    addr = "webstack-go-mysql:3306"
-    name = "webstack-go"
-    pass = "123456"
+    addr = "mysql:3306"
+    name = "guide"
+    pass = "password"
     user = "root"
 
 [redis]
-  addr = "webstack-go-redis:6379"
+  addr = "redis:6379"
   db = "0"
   maxretries = 3
   minidleconns = 5
-  pass = "123456"
+  pass = "password"
   poolsize = 10

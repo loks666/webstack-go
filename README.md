@@ -1,5 +1,7 @@
 # webstack-go 网址导航后台系统
 
+From to https://github.com/ch3nnn/webstack-go
+
 基于 Golang 开源的网址导航网站项目，具备完整的前后台，您可以拿来制作自己平日收藏的网址导航。
 
 - 图标库: [lineicons](https://lineicons.com/icons/)
@@ -38,7 +40,7 @@
 
 ### 二、启动服务
 
-> 两种方式运行 1. 源码启动服务 2. Docker启动服务
+> 两种方式运行 1. 源码启动服务 2. Docker启动服务(Docker hub仓库镜像启动)
 
 **一、源码运行服务**
 
@@ -55,6 +57,8 @@
 **一、基础服务**
 
 1. 目录下执行 `docker-compose -f docker-compose.yml up -d` 等待基础组件启动 (Mysql、Redis、Service)
+   > 注意:目前原作者的逻辑是把代码的写死在配置里的，在页面上的改动其实无效，所以启动的时候一定要对照配置文件里面的密码，否则启动会失败，后续有空改这块的东西先启动了再说
+
    ```shell
    $ docker-compose -f docker-compose.yml up -d
    [+] Running 4/4
