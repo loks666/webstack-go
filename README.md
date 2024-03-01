@@ -45,7 +45,7 @@ From to https://github.com/ch3nnn/webstack-go
 **一、源码运行服务**
 
 1. 目录下执行 `go mod tidy` 拉取项目依赖库
-2. 安装完依赖执行 `go run main.go` 首次启动程序之后，会在浏览器中自动打开安装界面，链接地址：http://127.0.0.1:9999/install
+2. 安装完依赖执行 `go run main.go` 首次启动程序之后，会在浏览器中自动打开安装界面，链接地址：/install
 3. 点击 `初始化项目` 会看到如下图所示, 如果提示重新运行服务说明项目初始化完成, 只需重新运行服务就 OK 了!
 
    <img src="assets/bootstrap/images/init_project.png" width="600"/>
@@ -75,7 +75,7 @@ From to https://github.com/ch3nnn/webstack-go
    webstack-go-redis     redis:6.2.4                       "docker-entrypoint.s…"   webstack-go-redis     2 minutes ago       Up 2 minutes (healthy)   0.0.0.0:6379->6379/tcp
    webstack-go-service   webstack-go-webstack-go-service   "./webstack-go -env …"   webstack-go-service   2 minutes ago       Up 2 minutes (healthy)   0.0.0.0:9999->9999/tcp
    ```
-3. docker container 正常运行后, 在浏览器中打开安装界面，链接地址：http://127.0.0.1:9999/install
+3. docker container 正常运行后, 在浏览器中打开安装界面，链接地址：/install
 4. 点击 `初始化项目` 会看到如下图所示, 如果提示重新运行服务说明项目初始化完成, 只需重新运行 `webstack-go-service` 容器服务就 OK 了!
    <img src="assets/bootstrap/images/init_project.png" width="600"/>
 
